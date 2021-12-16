@@ -74,6 +74,10 @@
 
 <script>
 export default {
+  mouted() {
+    this.selectedClasse = this.classList[0];
+    this.selectedAncestry = this.ancestryList[0];
+  },
   data: () => ({
     selectedClasse: null,
     selectedAncestry: null,
@@ -118,7 +122,13 @@ export default {
             item.traits.includes(this.selectedAncestry.name.toLowerCase())
           )
         );
-        return donsClasse;
+        let dons = this.sort(
+          this.$store.state.feats.filter((item) =>
+            item.traits.includes(this.selectedAncestry.name.toLowerCase())
+          )
+        );
+
+        return [].concat.apply([], [donsClasse, dons]);
       } else {
         return [];
       }

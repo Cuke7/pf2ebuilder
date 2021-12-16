@@ -41,7 +41,61 @@ export const getters = {
     for (const match of matchs) {
       description = description.replace(match[0], match[3]);
     }
+    description = description.replaceAll("[[/r ", "");
+    description = description.replaceAll("#", "");
+    description = description.replaceAll("]]", "");
     return description;
+  },
+  translate: (state) => (text) => {
+    let dictionary = [
+      ["water", "eau"],
+      ["primal", "primale"],
+      ["evocation", "évocation"],
+      ["occult", "occulte"],
+      ["necromancy", "nécromancie"],
+      ["negative", "négative"],
+      ["enchantment", "enchantement"],
+      ["bard", "barde"],
+      ["cleric", "clerc"],
+      ["bard", "barde"],
+      ["sorcerer", "sorcier"],
+      ["druid", "druide"],
+      ["wizard", "magicien"],
+      ["teleportation", "téléportation"],
+      ["concentrate", "concentration"],
+      ["electricity", "électricité"],
+      ["nonlethal", "non léthal"],
+      ["prediction", "prédiction"],
+      ["detection", "détection"],
+      ["visual", "visuel"],
+      ["litany", "litanie"],
+      ["evil", "mauvais"],
+      ["good", "bon"],
+      ["fire", "feu"],
+      ["cantrip", "tour de magie"],
+      ["poison", "poison"],
+      ["curse", "malédiction"],
+      ["cursebound", "malédiction"],
+      ["death", "mort"],
+      ["morph", "métamorphose"],
+      ["earth", "terre"],
+      ["fear", "peur"],
+      ["darkness", "obscurité"],
+      ["hot", "chaleur"],
+      ["cold", "froid"],
+      ["uncommon", "peu commun"],
+      ["shadow", "ombre"],
+      ["healing", "soin"],
+      ["attack", "attaque"],
+      ["sonic", "son"],
+    ];
+    let newText = text;
+    // console.log(newText);
+    for (const word of dictionary) {
+      newText = newText.replace(word[0], word[1]);
+      // console.log(newText);
+    }
+    return newText;
   },
 };
 
